@@ -61,6 +61,11 @@ Train:
 
 Replace the checkpoint dir with the output from the training. To use your own data, change the `eval.py` script to load your data.
 
+## To use your own data
+sets the path of data file in the `eval.py` script, then,
+```bash
+./eval.py --eval_train=False --checkpoint_dir="./runs/1459637919/checkpoints/"
+```
 
 ## References
 
