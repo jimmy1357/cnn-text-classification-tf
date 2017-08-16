@@ -9,7 +9,7 @@ def clean_str(string):
     Tokenization/string cleaning for all datasets except for SST.
     Original taken from https://github.com/yoonkim/CNN_sentence/blob/master/process_data.py
     """
-    string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)
+    #string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string) # replace Chinese(also other languages) with blank
     string = re.sub(r"\'s", " \'s", string)
     string = re.sub(r"\'ve", " \'ve", string)
     string = re.sub(r"n\'t", " n\'t", string)
@@ -63,3 +63,11 @@ def batch_iter(data, batch_size, num_epochs, shuffle=True):
             start_index = batch_num * batch_size
             end_index = min((batch_num + 1) * batch_size, data_size)
             yield shuffled_data[start_index:end_index]
+
+def load_test_datas(test_data_file):                                                                                                                                  
+    # Load data from files
+    datas = list(open(test_data_file, "r").readlines())
+    datas = [s.strip() for s in datas]
+    # Split by words
+    x_text = [clean_str(sent) for sent in datas]
+    return x_text
